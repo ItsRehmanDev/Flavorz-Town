@@ -1,3 +1,24 @@
+node_modules/
+dist/
+build/
+.env
+.env.*
+.DS_Store
+.vite/
+coverage/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea/
+.vscode/
+.cache/
+logs/
+*.log
+/.pnp
+.pnp.js
+/.turbo
+local.env
 # Logs
 logs
 *.log
