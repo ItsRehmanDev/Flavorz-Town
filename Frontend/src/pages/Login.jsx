@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import { useToast } from '../../components/feedback/Toast';
-import Button from '../../components/ui/Button';
-import Input from '../../components/ui/Input';
-import Loading from '../../components/ui/Loading';
+import { useAuth } from '../contexts/AuthContext';
+import { useToast } from '../components/feedback/Toast';
+import Button from '../components/ui/Button';
+import Input from '../components/ui/Input';
+import Loading from '../components/ui/Loading';
 
 /**
  * Login Page Component

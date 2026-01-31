@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useOrders } from '../../hooks/useOrders';
-import { useCart } from '../../contexts/CartContext';
-import { useToast } from '../../components/feedback/Toast';
-import Header from '../../components/layout/Header';
-import Footer from '../../components/layout/Footer';
-import Card from '../../components/ui/Card';
-import Button from '../../components/ui/Button';
-import Badge from '../../components/ui/Badge';
-import Loading from '../../components/ui/Loading';
-import EmptyState from '../../components/feedback/EmptyState';
-import Modal from '../../components/ui/Modal';
+import { useOrders } from '../hooks/useOrders';
+import { useCart } from '../contexts/CartContext';
+import { useToast } from '../components/feedback/Toast';
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
+import Badge from '../components/ui/Badge';
+import Loading from '../components/ui/Loading';
+import EmptyState from '../components/feedback/EmptyState';
+import Modal from '../components/ui/Modal';
 
 /**
  * Orders Page Component
