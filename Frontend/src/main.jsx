@@ -1,24 +1,22 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.jsx';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1976d2", 
-    },
-    secondary: {
-      main: "#dc004e", 
-    },
-  },
-});
+// Import fonts (optional - using system fonts as fallback)
+const link = document.createElement('link');
+link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
+link.rel = 'stylesheet';
+document.head.appendChild(link);
 
-createRoot(document.getElementById("root")).render(
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+  throw new Error('Failed to find root element');
+}
+
+createRoot(rootElement).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <App />
   </StrictMode>
 );

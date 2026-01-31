@@ -1,27 +1,33 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+const app = require('./src/app');
+const connectDatabase = require('./src/config/database');
+const config = require('./src/config/env');
+const { setupUnhandledRejectionHandler, setupUncaughtExceptionHandler } = require('./src/middlewares/errorHandler');
+const { logger } = require('./src/utils/logger');
 
-const app = express();
-app.use(express.json());
-app.use(cors());
+// Handle uncaught exceptions
+setupUncaughtExceptionHandler();
 
+// Connect to database
+connectDatabase();
 
-const authRoutes = require("./routes/Auth");
-const dishRoutes = require("./routes/Dishes");
-const orderRoutes = require("./routes/Order");
-const adminRoutes = require("./routes/Admin");
-const Order = require("./models/Order");
+// Start server
+const PORT = config.port;
 
-app.use("/", authRoutes);
-app.use("/dishes", dishRoutes);
-app.use("/order", orderRoutes);
-app.use("/admin", adminRoutes);
-app.use("/order", require("./routes/Delete")); 
+const server = app.listen(PORT, () => {
+  logger.info(`Server running in ${config.env} mode on port ${PORT}`);
+  console.log(`🚀 Server ready at http://localhost:${PORT}`);
+});
 
-mongoose.connect("mongodb+srv://abdul:flavor@cluster0.vuh9qbd.mongodb.net/flavortown?retryWrites=true&w=majority&appName=Cluster0")
-  .then(() => console.log("✅ MongoDB Atlas Connected"))
-  .catch(err => console.log("❌ DB Error:", err));
+// Handle unhandled promise rejections
+setupUnhandledRejectionHandler();
 
-const PORT = 4500;
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM received. Shutting down gracefully...');
+  server.close(() => {
+    logger.info('Server closed');
+    process.exit(0);
+  });
+});
+
+module.exports = server;
